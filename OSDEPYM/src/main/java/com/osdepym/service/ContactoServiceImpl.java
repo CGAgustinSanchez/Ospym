@@ -262,9 +262,15 @@ public class ContactoServiceImpl implements ContactoService{
 		if(categoria != null && !categoria.equals(""))
 			sb.append(Constants.CATEGORIA).append(": ").append(categoria).append("\n");
 		sb.append(Constants.TITULAR).append(": ").append(contactoForm.getIdAfiliado()).append(" - ").append(contactoForm.getNombreAfiliado().toUpperCase()).append("\n");
-		sb.append(Constants.EMAIL).append(": ").append(restResponse.getEmail()).append("\n");
-		sb.append(Constants.TELEFONO_CASA).append(": ").append(restResponse.getTelefonoCasa()).append("\n");
-		sb.append(Constants.TELEFONO_TRABAJO).append(": ").append(restResponse.getTelefonoTrabajo()).append("\n");
+		if(restResponse != null){
+			if(restResponse.getEmail() != null && restResponse.getEmail() != "")
+				sb.append(Constants.EMAIL).append(": ").append(restResponse.getEmail()).append("\n");
+			if(restResponse.getTelefonoCasa() != null && restResponse.getTelefonoCasa() != "")
+				sb.append(Constants.TELEFONO_CASA).append(": ").append(restResponse.getTelefonoCasa()).append("\n");
+			if(restResponse.getTelefonoTrabajo() != null && restResponse.getTelefonoTrabajo() != "")
+				sb.append(Constants.TELEFONO_TRABAJO).append(": ").append(restResponse.getTelefonoTrabajo()).append("\n");
+		}
+		
 		sb.append(Constants.TEXTO).append(": ").append(contactoForm.getComentario()).append("\n");
 
 		return sb.toString();
